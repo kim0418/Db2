@@ -25,11 +25,11 @@ int main(int argc, char*argv[]){
 		cout << "Input :";
 		cin >> input;
 		s.push(input);
-		cout << input << " is push" << endl;
+		cout << "'"  << input << "'" << " is push" << endl;
 		break;
 	    case 2:
 		if(!s.empty()){
-		    cout << s.top() << " is pop" << endl;
+		    cout << "'" << s.top() << "'" << " is pop" << endl;
 		    s.pop();
 		}
 		else{
