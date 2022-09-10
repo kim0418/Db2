@@ -23,7 +23,6 @@ int main(int argc, char*argv[]){
 
     do{
 	menu();
-	cout << "option";
 	cin >> num;
 	switch(num){
 	    case 1:
@@ -41,16 +40,22 @@ int main(int argc, char*argv[]){
 		break;
 	    case 2:
 		if(!s.empty()){
-		    cout << s.top() << " is pop" << endl;
+		    cout << "POP : " << s.top() << " is pop" << endl;
 		    s.pop();
 		    count--;
 		    printf("stack : ");
-		    for(int j=0;j<s.size();j++){
-			cout << arr_stk[j] << "-";
+		    if(count==0){
+			cout << "EMPTY" << endl;
+		    }
+		    else{
+			for(int j=0;j<s.size();j++){
+			    cout << arr_stk[j] << "-";
+			}	
 		    }
 		    cout << endl;
 		}
 		else{
+		    cout << "POP : " << "EMPTY" << endl;
 		    cout << "Stack is empty" << endl;
 		}
 		break;
