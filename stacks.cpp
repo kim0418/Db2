@@ -12,25 +12,43 @@ void menu(){
 }
 
 int main(int argc, char*argv[]){
+
     int input=0;
     int num=0;
-   
+    int count=0;
+
     stack<int> s;
+
+    int *arr_stk=(int*)malloc(sizeof(int)*s.size());
 
     do{
 	menu();
+	cout << "option";
 	cin >> num;
 	switch(num){
 	    case 1:
 		cout << "Input :";
 		cin >> input;
 		s.push(input);
-		cout << "'"  << input << "'" << " is push" << endl;
+		cout << input << " is push" << endl;
+		arr_stk[count]=input;
+		count++;
+		printf("stack : ");
+		for(int i=0;i<s.size();i++){
+		    cout << arr_stk[i] << "-";
+		}
+		cout << endl;
 		break;
 	    case 2:
 		if(!s.empty()){
-		    cout << "'" << s.top() << "'" << " is pop" << endl;
+		    cout << s.top() << " is pop" << endl;
 		    s.pop();
+		    count--;
+		    printf("stack : ");
+		    for(int j=0;j<s.size();j++){
+			cout << arr_stk[j] << "-";
+		    }
+		    cout << endl;
 		}
 		else{
 		    cout << "Stack is empty" << endl;
