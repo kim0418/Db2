@@ -89,7 +89,7 @@ void Delete(node**head, int target){
 		}
 	}
 	else if(remove->next==NULL){
-		remove->prev->next=remove->prev;
+		remove->prev->next=remove->next;
 		free(remove);
 	}
 	else{
