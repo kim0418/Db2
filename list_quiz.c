@@ -15,6 +15,7 @@ node*Allocnode(char arr){
 	newnode->data=arr;
 	newnode->next=NULL;
 	newnode->prev=NULL;
+	return newnode;
 }
 
 void printlist(node**head){
