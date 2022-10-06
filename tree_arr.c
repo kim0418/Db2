@@ -53,10 +53,20 @@ void searchroot(int**arr,int levels){
 					printf("left_right=%d,",(*arr)[i*2+1]);
 				}
 				if(i%2==0){
-					printf("brother_root=%d",(*arr)[i+1]);
+					if((*arr)[i+1]==999){
+						printf("brother_root=NULL");
+					}
+					else{
+						printf("brother_root=%d",(*arr)[i+1]);
+					}
 				}
 				else{
-					printf("brother_root=%d",(*arr)[i-1]);
+					if((*arr)[i-1]==999){
+						printf("brother_root=NULL");
+					}
+					else{
+						printf("brother_root=%d",(*arr)[i-1]);
+					}
 				}
 				printf("\n");
 				break;
@@ -77,10 +87,10 @@ void printroot(int **arr,int levels){
 		printf("Lev%d: ",i+1);
 		for(int j=1;j<pow(2,i)+1;j++){
 			if((*arr)[j+count]==999){
-				printf(" - ");
+				printf("--");
 			}
 			else{
-				printf(" %d ",(*arr)[j+count]);
+				printf("%d",(*arr)[j+count]);
 			}
 		}
 		printf("\n");
@@ -89,7 +99,13 @@ void printroot(int **arr,int levels){
 
 void printroot2(int **arr,int levels){
 	int s,e=0;
-	for(int h=0;h<=levels;h++){
+	for(int h=1;h<=levels;h++){
+		if(h==1){
+			printf("Lev%d: ",h);
+		}
+		else{
+			printf("       ");
+		}
 		for(int i=0;i<pow(2,levels-h)-1;i++){
 			printf("  ");
 		}
@@ -100,7 +116,7 @@ void printroot2(int **arr,int levels){
 		else{
 			e=s*2;
 		}
-		if(h!=1){
+		if(h!=1){    
 			for(int i=0;i<s;i++){
 				if((*arr)[i]==999){
 					printf(" /");
@@ -118,13 +134,14 @@ void printroot2(int **arr,int levels){
 				}
 			}
 			printf("\n");
+			printf("Lev%d: ",h);
 			for(int i=0;i<pow(2,levels-h)-1;i++){
 				printf("  ");
 			}
 		}
 		for(int i=s;i<e;i++){
 			if((*arr)[i]==999){
-				printf(" -");
+				printf(" - ");
 			}
 			else{
 				printf("%2d",(*arr)[i]);
@@ -143,8 +160,8 @@ void protocal(){
 	scanf("%d",&levels);
 	int *root=MakeRoot(levels);
 	insertTree(&root);
-	printroot(&root,levels);
-	//printroot2(&root,levels);
+	//printroot(&root,levels);
+	printroot2(&root,levels);
 	searchroot(&root,levels);
 }
 
