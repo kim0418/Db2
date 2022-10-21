@@ -117,64 +117,40 @@ void insert_word(node**root){
 	fclose(fp);
 }
 
+node*max_value(node*root){
+	node*curr=root;
+	while(curr->right!=NULL){
+		curr=curr->right;
+	}
+	return curr;
+}
+
 void target_delete(node**root,char*target){
-	node*parent=NULL;
-	node*p;
-	p=*root;
-	node*delete_target;
-	node*target_parent;
-	node*child;
-	//삭제하려는 대상 찾기
-	while(p!=NULL && strcmp(p->data_eng,target)!=0){
-		parent=p;
-		if(strcmp((*root)->data_eng,target)>0){
-			p=p->left;
-		}
-		if(strcmp((*root)->data_eng,target)<0){
-			p=p->right;
-		}
+	if(*root==NULL) printf("삭세없음");
+	else if(strcmp((*root)->data_eng,target)>0){
+		target_delete(&(*root)->left,target);
 	}
-	if(p==NULL){
-		printf("삭제하려는 대상이 사전에 없습니다.\n");
+	else if(strcmp((*root)->data_eng,target)<0){
+		target_delete(&(*root)->right,target);
 	}
-	//삭제하려는 대상이 leafnode인경우
-	if(p->left==NULL && p->right==NULL){
-		if(parent!=NULL){
-			if(parent->left==p) parent->left=NULL;
-			else parent->right=NULL;
-		}
-		else *root=NULL;//트리의 구성이 root만 있는경우
-	}
-	//삭제하려는 대상의 자식이 하나인경우
-	else if(p->left==NULL ||p->right==NULL){
-		if(p->left!=NULL) child=p->left;
-		else child= p->right;
-		
-		if(parent!=NULL){
-			if(parent->left==p) parent->left=child;
-			else parent->right=child;
-		}
-		else *root=child;
-	}
-	//삭제하려는 대상의 자식이 두개인경우 왼쪽자식중 제일 큰값을 가져온다.
 	else{
-		target_parent=p;
-		delete_target=p->left;
-		
-		while(delete_target->right!=NULL){
-			target_parent=delete_target;
-			delete_target=delete_target->right;
+		if((*root)->left!=NULL && (*root)->right!=NULL){
+			node*temp=max_value((*root)->left);
+			strcpy((*root)->data_eng,temp->data_eng);
+			strcpy((*root)->data_kor,temp->data_kor);
+			target_delete(&(*root)->left,(*root)->data_eng);
 		}
-		
-		if(target_parent->left==delete_target){
-			target_parent->left=delete_target->left;
+		else{
+			node*temp=*root;
+			if((*root)->left==NULL){
+				*root=(*root)->right;
+			}
+			else if((*root)->right==NULL){
+				*root=(*root)->left;
+			}
+			free(temp);
 		}
-		else target_parent->right=delete_target->left;
-		
-		p->data_eng=delete_target->data_eng;
-		p=delete_target;
 	}
-	free(p);
 }
 
 void delete_word(node**root){
