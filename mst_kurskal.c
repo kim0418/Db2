@@ -77,7 +77,7 @@ void kruskal(Graphtype*g){
 	
 	printf("kruskal 신장 트리 알고리즘\n");
 	int i=0;
-	while(edge_accepted<(g->n-1)){
+	while(i<(g->n-1)){
 		e=g->edges[i];
 		uset=set_find(e.start);
 		vset=set_find(e.end);
