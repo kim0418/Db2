@@ -1,6 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<limits.h>
+#include<iostream>
+#include<climits>
 #include<vector>
 
 #define max 100
