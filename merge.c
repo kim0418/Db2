@@ -101,7 +101,7 @@ int main(int argc, char*argv[]){
 	}
 	printf("merge_sort: ");
 	gettimeofday(&start,NULL);
-	merge_sort(list,0,n);
+	merge_sort(list,0,n-1);
 	gettimeofday(&end,NULL);
 	printf(" %.3lf초",time_diff(&start,&end));
 	if(n>30){
@@ -121,7 +121,7 @@ int main(int argc, char*argv[]){
 	printf("\n");
 	printf("quick_sort: ");
 	gettimeofday(&start,NULL);
-	merge_sort(list,0,n);
+	quick_sort(list,0,n-1);
 	gettimeofday(&end,NULL);
 	printf(" %.3lf초",time_diff(&start,&end));
 	if(n>30){
