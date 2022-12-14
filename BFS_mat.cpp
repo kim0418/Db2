@@ -39,10 +39,6 @@ void insert_edge(GraphType*g,int s, int e){
     g->adj[e][s]=1;
 }
 
-void bfs_list(GraphType*g,int v){
-    
-}
-
 void bfs(GraphType*g,int v){
     queue<int>q;
     visited[v]=TRUE;
